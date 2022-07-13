@@ -12,3 +12,7 @@ Run:
 - `make run` to run the project.
 - `make ctn-build` to build an image for the project named `intech-bot`.
 - `make ctn-run` to run the project in a container.
+
+## Envoronment variable
+
+- `TKN` → The discord bot token

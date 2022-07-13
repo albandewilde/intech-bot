@@ -15,4 +15,6 @@ ctn-build:
 	@$(CTN) build -t intech-bot .
 
 ctn-run: ctn-build
-	@$(CTN) run -t intech-bot
+	@$(CTN) run \
+		-e TKN=$(TKN) \
+		intech-bot
