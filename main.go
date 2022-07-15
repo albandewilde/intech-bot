@@ -5,6 +5,8 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+
+	"github.com/albandewilde/intech-bot/discordclient"
 )
 
 var TKN string
@@ -19,21 +21,18 @@ func init() {
 
 func main() {
 	// Start the discord bot
-	bot, err := NewBot(TKN)
+	bot, err := discordclient.NewInitializedBot(TKN)
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	err = bot.Open()
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	RegisterCommands(bot)
 
 	// Gracefully close the discord bot
 	sc := make(chan os.Signal, 1)
 	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt, os.Kill)
 	<-sc
-	bot.Close()
+	errs := discordclient.Close(bot)
+	if len(errs) > 0 {
+		log.Fatal(errs)
+	}
+
 }
