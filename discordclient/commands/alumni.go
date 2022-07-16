@@ -23,7 +23,7 @@ func alumniLinkHandler(s *dgo.Session, i *dgo.InteractionCreate) {
 						Components: []dgo.MessageComponent{
 							dgo.Button{
 								Emoji: dgo.ComponentEmoji{
-									Name: "✨",
+									Name: "🎓",
 								},
 								Label: "Plateform alumni",
 								Style: dgo.LinkButton,
