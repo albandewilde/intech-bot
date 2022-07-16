@@ -9,6 +9,7 @@ import (
 // commands register to the bot
 var Commands = []*dgo.ApplicationCommand{
 	repositoryLinkCommand,
+	alumniLinkCommand,
 }
 
 // commandsHandlers
@@ -16,6 +17,7 @@ var Commands = []*dgo.ApplicationCommand{
 // value → the handler function for the command
 var commandHandlers = map[string]func(s *dgo.Session, i *dgo.InteractionCreate){
 	repositoryLinkCommand.Name: repositoryLinkHandler,
+	alumniLinkCommand.Name:     alumniLinkHandler,
 }
 
 // CommandsHandlers is the handler of slash commands
