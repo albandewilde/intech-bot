@@ -1,6 +1,7 @@
-.PHONY: test t build run ctn-build ctn-run
+.PHONY: test t build run image ctn-run publish
 
 CTN ?= podman
+REGISTRY ?= docker.io/albandewilde
 
 test t:
 	@go test ./...
@@ -11,10 +12,13 @@ build:
 run: build
 	@TKN=$(TKN) ./intech-bot
 
-ctn-build:
-	@$(CTN) build -t intech-bot .
+image:
+	@$(CTN) build -t $(REGISTRY)/intech-bot .
 
-ctn-run: ctn-build
+ctn-run: image
 	@$(CTN) run \
 		-e TKN=$(TKN) \
 		intech-bot
+
+publish:
+	@$(CTN) push $(REGISTRY)/intech-bot

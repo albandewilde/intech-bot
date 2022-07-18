@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: intech-bot
+  name: intech-bot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: iti-bot
+  template:
+    metadata:
+      labels:
+        app: iti-bot
+    spec:
+      containers:
+      - image: docker.io/albandewilde/intech-bot
+        name: intech-bot
