@@ -10,6 +10,7 @@ import (
 var Commands = []*dgo.ApplicationCommand{
 	repositoryLinkCommand,
 	alumniLinkCommand,
+	socialNetworkCommand,
 }
 
 // commandsHandlers
@@ -18,6 +19,7 @@ var Commands = []*dgo.ApplicationCommand{
 var commandHandlers = map[string]func(s *dgo.Session, i *dgo.InteractionCreate){
 	repositoryLinkCommand.Name: repositoryLinkHandler,
 	alumniLinkCommand.Name:     alumniLinkHandler,
+	socialNetworkCommand.Name:  socialNetworkHandler,
 }
 
 // CommandsHandlers is the handler of slash commands
