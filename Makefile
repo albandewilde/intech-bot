@@ -9,7 +9,7 @@ build:
 	@go build -o ./intech-bot
 
 run: build
-	@./intech-bot
+	@TKN=$(TKN) ./intech-bot
 
 ctn-build:
 	@$(CTN) build -t intech-bot .
