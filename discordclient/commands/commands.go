@@ -42,6 +42,7 @@ func RegisterCommands(s *dgo.Session, commands []*dgo.ApplicationCommand) ([]*dg
 			registeredCommands[i] = cmd
 		}
 	}
+
 	return registeredCommands, errors
 }
 
