@@ -16,3 +16,11 @@ Run:
 ## Envoronment variable
 
 - `TKN` → The discord bot token
+
+## Deployment
+
+The deployment is made with kubernetes.
+
+All files are un the `./k8s/` directory.
+
+The deployment depends on a secret named `intech-bot-discord` that have the `tkn` key.
