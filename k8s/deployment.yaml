@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: iti-bot
+  name: intech-bot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: iti-bot
+  template:
+    metadata:
+      labels:
+        app: iti-bot
+    spec:
+      containers:
+      - image: docker.io/albandewilde/intech-bot
+        name: intech-bot
+        env:
+          - name: TKN
+            valueFrom:
+              secretKeyRef:
+                name: intech-bot-discord
+                key: tkn
+        resources:
+          limits:
+            memory: 100Mi
+            cpu: 100m
+          requests:
+            memory: 10Mi
+            cpu: 10m
