@@ -41,4 +41,5 @@ spec:
           httpGet:
             path: /healthz
             port: 5419
+          initialDelaySeconds: 2
         imagePullPolicy: Always
