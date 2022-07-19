@@ -23,6 +23,13 @@ spec:
               secretKeyRef:
                 name: intech-bot-discord
                 key: tkn
+          - name: HOST
+            value: "0.0.0.0"
+          - name: PORT
+            value: "5419"
+        ports:
+          - containerPort: 5419
+            hostPort: 4000
         resources:
           limits:
             memory: 100Mi
@@ -30,3 +37,8 @@ spec:
           requests:
             memory: 10Mi
             cpu: 10m
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 5419
+        imagePullPolicy: Always

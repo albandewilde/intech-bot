@@ -16,6 +16,8 @@ Run:
 ## Envoronment variable
 
 - `TKN` → The discord bot token
+- `HOST` → Host the metric server listen (default is `0.0.0.0`)
+- `PORT` → Port the metric server listen (defautl is `5419`)
 
 ## Deployment
 
