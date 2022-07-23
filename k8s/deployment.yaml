@@ -27,9 +27,6 @@ spec:
             value: "0.0.0.0"
           - name: PORT
             value: "5419"
-        ports:
-          - containerPort: 5419
-            hostPort: 4000
         resources:
           limits:
             memory: 100Mi
