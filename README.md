@@ -16,3 +16,13 @@ Run:
 ## Envoronment variable
 
 - `TKN` → The discord bot token
+- `HOST` → Host the metric server listen (default is `0.0.0.0`)
+- `PORT` → Port the metric server listen (defautl is `5419`)
+
+## Deployment
+
+The deployment is made with kubernetes.
+
+All files are un the `./k8s/` directory.
+
+The deployment depends on a secret named `intech-bot-discord` that have the `tkn` key.

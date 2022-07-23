@@ -1,2 +1,3 @@
 *.swp
 intech-bot
+k8s/secret.yaml
