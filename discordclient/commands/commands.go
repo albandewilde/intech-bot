@@ -2,6 +2,7 @@ package commands
 
 import (
 	"log"
+	"strings"
 
 	dgo "github.com/bwmarrin/discordgo"
 )
@@ -20,12 +21,38 @@ var commandHandlers = map[string]func(s *dgo.Session, i *dgo.InteractionCreate){
 	repositoryLinkCommand.Name: repositoryLinkHandler,
 	alumniLinkCommand.Name:     alumniLinkHandler,
 	socialNetworkCommand.Name:  socialNetworkHandler,
+	createEventsCommand.Name:   createEventsHandler,
 }
 
 // CommandsHandlers is the handler of slash commands
 func CommandsHandlers(s *dgo.Session, i *dgo.InteractionCreate) {
-	if h, ok := commandHandlers[i.ApplicationCommandData().Name]; ok {
-		h(s, i)
+	switch i.Type {
+	case dgo.InteractionApplicationCommand:
+		if h, ok := commandHandlers[i.ApplicationCommandData().Name]; ok {
+			h(s, i)
+		}
+	case dgo.InteractionModalSubmit:
+		err := s.InteractionRespond(i.Interaction, &dgo.InteractionResponse{
+			Type: dgo.InteractionResponseChannelMessageWithSource,
+			Data: &dgo.InteractionResponseData{
+				Content: "Event saved, type command /events to see all the events stored",
+				Flags:   uint64(dgo.MessageFlagsEphemeral),
+			},
+		})
+
+		if err != nil {
+			panic(err)
+		}
+
+		data := i.ModalSubmitData()
+
+		if !strings.HasPrefix(data.CustomID, "create_events") {
+			return
+		}
+
+		if err != nil {
+			panic(err)
+		}
 	}
 }
 
