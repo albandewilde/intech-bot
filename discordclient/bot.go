@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/albandewilde/intech-bot/discordclient/commands"
+	"github.com/albandewilde/intech-bot/discordclient/modals"
 	dgo "github.com/bwmarrin/discordgo"
 )
 
@@ -16,7 +17,7 @@ func NewInitializedBot(tkn string) (*dgo.Session, []error) {
 
 	// Register callback functions
 	bot.AddHandler(ready)
-	bot.AddHandler(commands.CommandsHandlers)
+	bot.AddHandler(interactionHandler)
 
 	// Open the bot connection
 	err = bot.Open()
@@ -43,4 +44,13 @@ func Close(s *dgo.Session) []error {
 
 func ready(s *dgo.Session, r *dgo.Ready) {
 	log.Println("Discord bot ready !")
+}
+
+func interactionHandler(s *dgo.Session, i *dgo.InteractionCreate) {
+	switch i.Type {
+	case dgo.InteractionApplicationCommand:
+		commands.CommandsHandlers(s, i)
+	case dgo.InteractionModalSubmit:
+		modals.ModalsHandlers(s, i)
+	}
 }

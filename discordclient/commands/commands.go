@@ -3,6 +3,7 @@ package commands
 import (
 	"log"
 
+	"github.com/albandewilde/intech-bot/discordclient/assignrolemsg"
 	dgo "github.com/bwmarrin/discordgo"
 )
 
@@ -11,15 +12,17 @@ var Commands = []*dgo.ApplicationCommand{
 	repositoryLinkCommand,
 	alumniLinkCommand,
 	socialNetworkCommand,
+	assignrolemsg.AssignRolesMsg,
 }
 
 // commandsHandlers
 // key → the command name
 // value → the handler function for the command
 var commandHandlers = map[string]func(s *dgo.Session, i *dgo.InteractionCreate){
-	repositoryLinkCommand.Name: repositoryLinkHandler,
-	alumniLinkCommand.Name:     alumniLinkHandler,
-	socialNetworkCommand.Name:  socialNetworkHandler,
+	repositoryLinkCommand.Name:        repositoryLinkHandler,
+	alumniLinkCommand.Name:            alumniLinkHandler,
+	socialNetworkCommand.Name:         socialNetworkHandler,
+	assignrolemsg.AssignRolesMsg.Name: assignrolemsg.AssignRolesCommandHandler,
 }
 
 // CommandsHandlers is the handler of slash commands
